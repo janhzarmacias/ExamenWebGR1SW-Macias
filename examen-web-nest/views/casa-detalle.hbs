@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Detalle de Casa</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f6f8;
+      margin: 0;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .card {
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      padding: 2rem;
+      width: 320px;
+      text-align: center;
+    }
+
+    .card h2 {
+      margin-top: 0;
+      color: #2c3e50;
+    }
+
+    .card table {
+      width: 100%;
+      margin-top: 1rem;
+      border-collapse: collapse;
+    }
+
+    .card th {
+      text-align: left;
+      color: #555;
+      font-weight: normal;
+      padding: 8px;
+      background-color: #f9f9f9;
+    }
+
+    .card td {
+      padding: 8px;
+      color: #333;
+    }
+
+    .not-found {
+      color: red;
+      font-size: 1.2rem;
+      margin-top: 2rem;
+    }
+
+    .back-link {
+      margin-top: 2rem;
+      display: inline-block;
+      text-decoration: none;
+      color: #3498db;
+    }
+
+    .back-link:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  {{#if casa}}
+    <div class="card">
+      <h2>Detalle de Casa</h2>
+      <table>
+        <tr>
+          <th>ID:</th>
+          <td>{{casa.id}}</td>
+        </tr>
+        <tr>
+          <th>Nombre:</th>
+          <td>{{casa.nombre}}</td>
+        </tr>
+      </table>
+    </div>
+  {{else}}
+    <div class="not-found">No se encontró la casa solicitada</div>
+  {{/if}}
+
+  <a href="/casa/vista" class="back-link">← Volver al listado</a>
+</body>
+</html>

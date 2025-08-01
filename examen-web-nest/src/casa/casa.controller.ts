@@ -1,4 +1,4 @@
-import { Controller, Get, Query, Res, HttpStatus } from '@nestjs/common';
+import { Controller, Get, Query, Res, HttpStatus, Render, Param  } from '@nestjs/common';
 import { CasaService } from './casa.service';
 import { Response } from 'express';
 
@@ -6,6 +6,7 @@ import { Response } from 'express';
 export class CasaController {
   constructor(private readonly casaService: CasaService) {}
 
+  // 🔹 Ruta original: JSON con filtro por idCasa
   @Get()
   getCasa(@Query('idCasa') idCasa: string, @Res() res: Response) {
     if (!idCasa) {
@@ -21,4 +22,22 @@ export class CasaController {
       return res.status(HttpStatus.NOT_FOUND).send('No se encuentra');
     }
   }
+
+  // 🔹 Nueva ruta: renderizado en /casa/vista
+  @Get('vista')
+  @Render('casa')
+  renderCasaTabla() {
+    const casas = this.casaService.findAll();
+    return { casas };
+  }
+
+  @Get('vista/:id')
+  @Render('casa-detalle')
+  getCasaDetalle(@Param('id') id: string) {
+    const casa = this.casaService.findOneById(parseInt(id));
+    return { casa }; // si es null, la vista mostrará mensaje
+  }
+
+
 }
+
