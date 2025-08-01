@@ -28,6 +28,12 @@
       color: #2c3e50;
     }
 
+    .card img {
+      max-width: 100%;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+    }
+
     .card table {
       width: 100%;
       margin-top: 1rem;
@@ -69,16 +75,12 @@
 
   {{#if casa}}
     <div class="card">
-      <h2>Detalle de Casa</h2>
+      <h2>{{casa.nombre}}</h2>
+      <img src="{{casa.imagen}}" alt="Imagen de la casa" />
       <table>
-        <tr>
-          <th>ID:</th>
-          <td>{{casa.id}}</td>
-        </tr>
-        <tr>
-          <th>Nombre:</th>
-          <td>{{casa.nombre}}</td>
-        </tr>
+        <tr><th>ID:</th><td>{{casa.id}}</td></tr>
+        <tr><th>Precio:</th><td>${{casa.precio}}</td></tr>
+        <tr><th>Propietario:</th><td>{{casa.propietario}}</td></tr>
       </table>
     </div>
   {{else}}
